@@ -231,7 +231,10 @@ export function powerSelectFindTrigger(elementOrSelector) {
 export function powerSelectIsTriggerDisabled(trigger) {
   assert('ember-power-select trigger expected', trigger);
   const attr = trigger.getAttribute('aria-disabled');
-  return attr === '' || !!attr;
+  if (attr === null) {
+    return false;
+  }
+  return attr === '' || attr === 'true';
 }
 
 

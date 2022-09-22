@@ -24,9 +24,13 @@ const steps = {
     const trigger = powerSelectFindTrigger(element);
     assert('Trigger not found', trigger);
 
-    not
-      ? expect(trigger).not.to.have.attr('aria-disabled')
-      : expect(trigger).to.have.attr('aria-disabled');
+    const hasAriaDisabled = trigger.getAttribute('aria-disabled');
+    if (not) {
+      expect(hasAriaDisabled).to.be.oneOf([null, false, 'false']);
+    } else {
+      expect(trigger).to.have.attr('aria-disabled');
+      expect(hasAriaDisabled).to.eql('true');
+    }
   },
 
   async "Then there should be (NO|no )?(?:(\\d+) )items? in the dropdown $opinionatedElement"(no, countStr, [collection/* , label, selector */]) {

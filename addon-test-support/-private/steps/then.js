@@ -64,17 +64,20 @@ const steps = {
   },
 
   "Then (?:(\\d+) )?$opinionatedElement should (not |NOT )?be visible"(countRaw, [collection/* , label, selector */], no) {
-    let count =
+    const count =
       countRaw ? parseInt(countRaw, 10) :
                  1;
-
     const countVisible = collection.filter(element => isVisible(element)).length;
     if (no) {
-      let m = `Invisible element count`;
-      expect(collection.length - countVisible, m).to.equal(count);
+      if (countRaw !== undefined) {
+        // check exact match of invisible elements
+        expect(collection.length - countVisible, 'Invisible element count').to.equal(count);
+      } else {
+        // check no element is visible
+        expect(countVisible, 'Visible element count').to.equal(0);
+      }
     } else {
-      let m = `Visible element count`;
-      expect(countVisible, m).to.equal(count);
+      expect(countVisible, 'Visible element count').to.equal(count);
     }
   },
 

@@ -25,9 +25,12 @@ const steps = {
     assert('Trigger not found', trigger);
 
     const hasAriaDisabled = trigger.getAttribute('aria-disabled');
-    not
-      ? expect(hasAriaDisabled).not.be.oneOf([null, false])
-      : expect(hasAriaDisabled).to.be.truthy;
+    if (not) {
+      expect(hasAriaDisabled).to.be.oneOf([null, false, 'false']);
+    } else {
+      expect(trigger).to.have.attr('aria-disabled');
+      expect(hasAriaDisabled).to.eql('true');
+    }
   },
 
   async "Then there should be (NO|no )?(?:(\\d+) )items? in the dropdown $opinionatedElement"(no, countStr, [collection/* , label, selector */]) {

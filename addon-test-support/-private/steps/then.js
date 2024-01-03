@@ -234,7 +234,7 @@ const steps = {
       : expect(actualValue).equal(expectedValue);
   },
 
-  "Then record of type $opinionatedString and id $opinionatedString should have attribute $opinionatedString with value $opinionatedJSON"(typeRaw, idStr, key, value) {
+  "Then record of type $opinionatedModelName and id $opinionatedString should have attribute $opinionatedString with value $opinionatedJSON"(typeRaw, idStr, key, value) {
     const typePlural = pluralize(camelize(typeRaw));
 
     const collection = server.db[typePlural];

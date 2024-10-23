@@ -1,6 +1,6 @@
 import { assert }  from '@ember/debug';
 import { click } from '@ember/test-helpers';
-import { calendarSelect } from 'ember-power-calendar/test-support';
+import { calendarSelect } from 'ember-power-calendar/test-support/helpers';
 
 import {
   powerDatePickerFindTrigger,
